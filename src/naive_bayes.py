@@ -162,7 +162,7 @@ if __name__ == "__main__":
 	#Weather Dataset
 	print("\nWeather Dataset:")
 
-	df = pd.read_table("./Data/weather.txt")
+	df = pd.read_csv("./Data/weather.csv")
 	#print(df)
 
 	#Split fearures and target

@@ -7,8 +7,8 @@ Please read this [blog](https://medium.com/@rangavamsi5/na%C3%AFve-bayes-algorit
 # Installations
 ```
 # Create and activate new virtual environment (optional)
-python -m venv nb-venv
-source nb-venv/bin/activate
+python3 -m venv ./env
+source env/bin/activate
 
 # To deactivate virtual environment knn
 deactivate

@@ -17,7 +17,7 @@ y = dataset.iloc[:, PurchasedColumnIndex].values
 
 # Splitting the dataset into the Training set and Test set
 from sklearn.model_selection import train_test_split
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.20)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.20, random_state=0)
 
 # Feature Scaling
 from sklearn.preprocessing import StandardScaler
@@ -26,8 +26,8 @@ X_train = sc.fit_transform(X_train)
 X_test = sc.transform(X_test)
 
 # Training the Naive Bayes model on the Training set
-from sklearn.naive_bayes import GaussianNB
-classifier = GaussianNB()
+from sklearn.linear_model import LogisticRegression
+classifier = LogisticRegression()
 classifier.fit(X_train, y_train)
 
 # Predicting the Test set results
@@ -66,9 +66,9 @@ plt.show()
 np.set_printoptions(suppress=True)
 
 #Queries:
-for i in np.linspace(principal_df['PC1'].min(),principal_df['PC1'].max(),20):
-	for j in np.linspace(principal_df['PC2'].min(),principal_df['PC2'].max(),20):
-		sample = pd.DataFrame({0: [i], 1: [j]})
-		result = classifier.predict(sample)
-		sample_predict = sc.inverse_transform(sample)
-		print("Query 1:- {} ---> {}".format(sample_predict, result))
+result = pd.DataFrame(X_train)
+for index, row in result.iterrows():
+	sample = pd.DataFrame({0: [row[0]], 1: [row[1]]})
+	result = classifier.predict(sample)
+	sample_predict = sc.inverse_transform(sample)
+	print("Query 1:- {} ---> {}".format(sample_predict, result))
